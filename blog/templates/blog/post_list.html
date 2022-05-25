@@ -1,30 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My Django blog</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">My Django blog</a></h1>
-        </header>
-{% for post in posts %}
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </article>
+     <article>
+         <time>published: 24.05.2022, 12:14</time>
+          <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+         <p> Macbeth returns to his castle, followed almost immediately by King Duncan. The Macbeths plot together to kill Duncan and wait until everyone is asleep. At the appointed time, Lady Macbeth gives the guards drugged wine so Macbeth can enter and kill the King. He regrets this almost immediately, but his wife reassures him. She leaves the bloody daggers by the dead king just before Macduff, a nobleman, arrives. When Macduff discovers the murder, Macbeth kills the drunken guards in a show of rage and retribution. Duncan's sons, Malcolm and Donalbain, flee, fearing for their own lives; but they are, nevertheless, blamed for the murder.  </p>
+     </article>
     <article>
-        <time>published: {{ post.published_date }}</time>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </article>
-{% endfor %}
-
-        <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My first post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        </article>
-
-        <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </article>
-    </body>
-</html>
+        <time>published: 24.05.2022, 12:14</time>
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        <p>Macbeth becomes King of Scotland but is plagued by feelings of insecurity. He remembers the prophecy that Banquo's descendants will inherit the throne and arranges for Banquo and his son Fleance to be killed. In the darkness, Banquo is murdered, but his son escapes the assassins. At his state banquet that night, Macbeth sees the ghost of Banquo and worries the courtiers with his mad response. Lady Macbeth dismisses the court and unsuccessfully tries to calm her husband. </p>
+     </article>
+    {% endfor %}
+{% endblock %}
