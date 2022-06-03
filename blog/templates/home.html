@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
 
@@ -7,9 +8,10 @@
 <ul>
 {% for post in object_list %}
     <li><a href="{% url 'article_details' post.pk %}">{{ post.title }}
-        </a> - {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.author.email }}<br/>
-        {{ post.text }}
-    </li>
+    </a> - {{ post.author.first_name }} {{ post.author.last_name }} - <small><a href="{% url 'update_post' post.pk %}">(Edit Post)</a></small> <br/>
+        {{ post.text }}</li>
 {% endfor %}
 </ul>
+
+
 {% endblock %}

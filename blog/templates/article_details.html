@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1>{{ post.title }}</h1>
-<small>By: {{ post.author.first_name }} {{ post.author.last_name }}</small><br/>
+<small>By: {{ post.author.first_name }} {{ post.author.last_name }} <a href="{% url 'update_post' post.pk %}">(Edit Post)</a></small><br/>
 <hr>
 <br/>
 {{ post.text }}
@@ -14,5 +14,11 @@
 <br/><br/>
 <a href="{% url 'home' %}" class="alert alert-secondary" role="alert">Back</a>
 
-
+<br/><br/>
+<hr>
+<br/>
+<form action="{% url 'blogpost_like' post.pk%}" method="POST">
+    {% csrf_token %}
+    <button type="submit", name="post_id", value="{{ post_id }}", class=" btn btn-primary btn-sm">Like</button>
+</form>
 {% endblock %}
