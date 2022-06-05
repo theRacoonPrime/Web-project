@@ -7,7 +7,7 @@ from django.urls import reverse_lazy, reverse
 
 
 # def home(request):
-    # return render(request, 'home.html', {})
+# return render(request, 'home.html', {})
 
 
 def LikeView(requset, pk):
@@ -49,22 +49,6 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
