@@ -2,15 +2,18 @@
 {% block title %}Create a new blog post{% endblock %}
 {% block content %}
 
+{% if user.is_authenticated %}
+    <h1>Update Post</h1>
+    <br/><br/>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_ul }}
+            <button class="alert alert-secondary">Update</button>
+    </div>
+{% else %}
+You dont have permission !
 
-<h1>Update Post</h1>
-<br/><br/>
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_ul }}
-        <button class="alert alert-secondary">Update</button>
-</div>
-
+{% endif %}
 
 {% endblock %}
