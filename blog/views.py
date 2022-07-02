@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Category
+from .models import Post
 from django.shortcuts import get_object_or_404, render
 from .forms import PostForm, EditForm
 from django.http import HttpResponseRedirect
@@ -51,16 +51,6 @@ class DeletePostView(DeleteView):
     success_url = reverse_lazy('home')
 
 
-class AddCategoryView(CreateView):
-    model = Category
-    # form_class = PostForm
-    template_name = 'add_category.html'
-    fields = '__all__'
-
-
-def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category='cats')
-    return render(request, 'categories.html', {'cats': cats.title(), 'category_posts': category_posts})
 
 
 
