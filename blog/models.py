@@ -20,7 +20,10 @@ class Post(models.Model):
     title_tag = models.CharField(max_length=200, default=" My awesome blog")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
-    categories = models.CharField(max_length=200, default='uncategorized')
+    categories = models.ManyToManyField(Categories)
+    created_date = models.DateTimeField(default=timezone.now)
+    postdate = models.DateField(auto_now_add=True)
+    likes = models.ManyToManyField(User, related_name='blogpost_like')
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
