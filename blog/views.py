@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, Category, Comments
 from django.shortcuts import get_object_or_404, render
 from .forms import PostForm, EditForm
 from django.http import HttpResponseRedirect
@@ -37,6 +37,11 @@ class AddPostView(CreateView):
         # and this is my solution
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+# class AddCategoryView(CreateView):
+   # model = Category
+    # form_class = PostForm
 
 
 class UpdatePostView(UpdateView):

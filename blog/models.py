@@ -5,16 +5,13 @@ from django.urls import reverse
 
 
 class Comments(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=80)
-    email = models.EmailField()
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='comments')
     body = models.TextField()
-    active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.post
 
 
 class Category(models.Model):
@@ -31,14 +28,33 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
-    categories = models.ManyToManyField(Category)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now)
     postdate = models.DateField(auto_now_add=True)
-
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
 
     def get_absolute_url(self):
         return reverse('home')
+
+
+class Likes(models.Model):
+    author = models.ForeignKey(User,on_delete=models.CASCADE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
