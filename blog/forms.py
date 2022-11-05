@@ -12,7 +12,6 @@ class PostForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.Select(attrs={'class': 'form-control'}),
             'text': forms.Textarea(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
@@ -28,9 +27,8 @@ class EditForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'title_tag': forms.TextInput(attrs={'class': 'form-control'}),  # For a while a just stay it here
             'author': forms.Select(attrs={'class': 'form-control'}),
-            'categories': forms.Select(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
             'text': forms.Textarea(attrs={'class': 'form-control'})
 
         }

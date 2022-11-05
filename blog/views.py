@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Category, Comments
-from django.shortcuts import get_object_or_404, render
+from .models import Post
+from django.shortcuts import get_object_or_404
 from .forms import PostForm, EditForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
@@ -19,7 +19,7 @@ def LikeView(requset, pk):
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
-    ordering = ['-post_date']
+    # ordering = ['-post_date']
     # ordering = ['-id']
 
 
@@ -33,15 +33,10 @@ class AddPostView(CreateView):
     form_class = PostForm
     template_name = 'add_post.html'
 
-    def form_valid(self, form):   # I had an error "NOT NULL constraint failed: blog_post.author_id,"
+    def form_valid(self, form):
         # and this is my solution
         form.instance.author = self.request.user
         return super().form_valid(form)
-
-
-# class AddCategoryView(CreateView):
-   # model = Category
-    # form_class = PostForm
 
 
 class UpdatePostView(UpdateView):
@@ -54,8 +49,3 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
-
-
-
-
-
