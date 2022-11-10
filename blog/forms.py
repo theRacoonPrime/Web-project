@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 
 
 # choices = [('coding', 'coding'), ('Sport', 'Sport'), ('Poetry', 'Poetry'), ('lifestyle', 'lifestyle')]
@@ -8,14 +8,13 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'text')
+        fields = ("title", "text", "category")
 
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
-            'text': forms.Textarea(attrs={'class': 'form-control'}),
-            'category': forms.Select(attrs={'class': 'form-control'}),
-            'comments': forms.Select(attrs={'class': 'form-control'})
+            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "author": forms.Select(attrs={"class": "form-control"}),
+            "text": forms.Textarea(attrs={"class": "form-control"}),
+            "category": forms.Select(attrs={"class": "form-control"}),
 
         }
 
@@ -23,13 +22,24 @@ class PostForm(forms.ModelForm):
 class EditForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'text')
+        fields = ("title", "text", "category")
 
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
-            'category': forms.Select(attrs={'class': 'form-control'}),
-            'text': forms.Textarea(attrs={'class': 'form-control'})
+            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "author": forms.Select(attrs={"class": "form-control"}),
+            "category": forms.Select(attrs={"class": "form-control"}),
+            "text": forms.Textarea(attrs={"class": "form-control"})
 
         }
 
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ("body",)
+
+        widgets = {
+            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "author": forms.Select(attrs={"class": "form-control"}),
+
+        }
