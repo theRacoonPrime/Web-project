@@ -30,6 +30,11 @@ class Post(models.Model):
     text = models.TextField()
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now)
+    likes = models.ManyToManyField(User, blank=True, related_name="likes")
+    dislikes = models.ManyToManyField(User, blank=True, related_name="dislikes")
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
@@ -37,6 +42,3 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('home')
 
-
-class Likes(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)

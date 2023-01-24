@@ -25,13 +25,26 @@
 
 <br/><br/>
 <hr>
+<br><br/>
+<hr>
+<br/>
+<form action="{% url 'like_post' post.pk %}" method="POST">
+    {% csrf_token %}
 
+    {% if liked  %}
+        <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger btn-sm">DisLike</button>
+    {% else %}
+        <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button>
+    {% endif %}
+        - {{ total_likes }} Likes
+</form>
 <br/><br/>
 <hr>
 <h2>Comments</h2>
 
 {% if not post.comments.all %}
-    No comment yet<a href="{% url 'add_comment' post.pk %}">Add comment</a>
+    No comment yet
+<br/><br><a href="{% url 'add_comment' post.pk %}">Add comment</a>
 {% else %}
 <a href="{% url 'add_comment' post.pk %}">Add comment</a>
 <br/><br/>
@@ -47,5 +60,4 @@
     {% endfor %}
 {% endif %}
 <br/>
-
 {% endblock %}

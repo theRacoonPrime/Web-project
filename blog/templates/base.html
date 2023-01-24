@@ -29,22 +29,34 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="#" href="#">Home</a>
         </li>
-        <li class="nav-item">
+          {% if user.is_authenticated %}
+             <li class="nav-item">
           <a class="nav-link" href="add_post">Add post</a>
-        </li>
-        <li class="nav-item">
+            </li>
+          <li class="nav-item">
           <a class="nav-link" href="category">Category</a>
-        </li>
-        <nav class="navbar bg-light">
-          <div class="container-fluid">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
+            </li>
+              <li class="nav-item">
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+
+          {% else %}
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'registration' %}">Registration</a>
+            </li>
+
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+
+          {% endif %}
+
   </div>
-      </ul>
     </div>
-  </div>
 </nav>
     <br/>
     <div class="container">
