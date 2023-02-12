@@ -82,5 +82,6 @@ class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = "add_comment.html"
+    #fields = "__all__"
     success_url = reverse_lazy("home")
 
