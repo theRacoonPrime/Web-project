@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 
 class Comment(models.Model):
@@ -27,7 +28,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = RichTextField(blank=True, null = True)
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
     created_date = models.DateTimeField(default=timezone.now)
     likes = models.ManyToManyField(User, blank=True, related_name="likes")

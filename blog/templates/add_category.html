@@ -8,8 +8,11 @@
 <div class="form-group">
     <form method="POST">
         {% csrf_token %}
+        {{ form.media }}
         {{ form.as_ul }}
+        <a href="../"><input type="button" value="Back" class="alert alert-secondary" /></a>
         <button class="alert alert-secondary">Add Category</button>
+
 </div>
 
 {% endblock %}
