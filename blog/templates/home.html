@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
 
@@ -9,16 +8,16 @@
     {% for post in object_list %}
     <li><a href="{% url 'article_details' post.pk %}">{{ post.title }}
     </a>
-         <a href="% url 'category' post.category %">{{post.category}}
          {{ post.author.first_name }} {{ post.author.last_name }} -
-        {{ post.post_date }}  <small>
+        {{ post.created_date }}  <small>
             {% if user.is_authenticated %}
             - <a href="{% url 'update_post' post.pk %}">(Edit Post)</a>
             <a href="{% url 'delete_post' post.pk %}">(Delete Post)</a>
             {% endif %}
 
         </small> <br/>
-        {{ post.text|slice:":150" }}</li>
+        {{ post.text|slice:":150" }}
+    </li>
             {% endfor%}
 </ul>
 {% endblock %}
